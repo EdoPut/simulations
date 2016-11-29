@@ -10,7 +10,7 @@ function x = stirling_recursive (n)
     return;
   endif
   % compute the previous order solution
-  y = stirling(n-1);
+  y = stirling_recursive(n-1);
   a = 2 : n-1;
   % S_{i-1} + i S_{i}
   temp =  y(1:end-1) + (y(2:end) .* a);
