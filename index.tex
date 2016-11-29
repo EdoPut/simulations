@@ -1,0 +1,34 @@
+\documentclass[10pt,a4paper]{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\author{Edoardo Putti}
+\title{Modelli numerici per la simulazione}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{exercise}{Exercise}
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\linespread{1.2}
+
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+
+\newcommand{\abs}[1]{\mid #1 \mid}
+\newcommand{\compose}[2]{\ensuremath{#1 \circ #2}}
+\newcommand{\serie}[1]{\uppercase{#1}(x) = \sum\nolimits_{n} #1_n x^n}
+
+\newcommand{\identity}{I}
+\newcommand{\shift}{E}
+\newcommand{\difference}{\ensuremath{\Delta}}
+
+\newcommand{\pseudopotenza}[2]{\ensuremath{#1^{(#2)}}}
+\begin{document}
+\input{operatori_discreti.tex}
+\end{document}

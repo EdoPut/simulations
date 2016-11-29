@@ -1,0 +1,358 @@
+\section{Operatori discreti}
+
+\begin{definition}{Identità}
+	\begin{align}
+		\identity : \C &\mapsto \C
+		\\
+		x &\mapsto x
+	\end{align}
+\end{definition}
+
+\begin{definition}{Shift}
+	\begin{align}
+		\shift : \C &\mapsto \C
+		\\
+		x_n &\mapsto x_{n+1}
+	\end{align}
+\end{definition}
+
+\begin{definition}{Differenza}
+	\begin{align}
+		\difference : \C &\mapsto \C
+		\\
+		x_n &\mapsto x_{n+1} - x_{n}
+	\end{align}
+	
+	L'operatore \difference può essere rappresentato con $\shift - \identity$
+\end{definition}
+
+\begin{proposition}
+	Gli operatori \identity, \shift, \difference commutano fra loro.
+\end{proposition}
+
+\begin{proposition}
+	Le potenze dei 3 operatori sono facili da rappresentare
+	
+	\begin{equation}
+		\identity^k = \identity
+	\end{equation}
+	
+	\begin{equation}
+		\shift^k = x_n \mapsto x_{n+k}
+	\end{equation}
+	
+	\begin{equation}
+		\difference^k
+		=
+		(\shift - \identity)^k
+		=
+		\sum
+			\limits_{i=0}^{k}
+			{ k \choose i }
+			\shift^{k-i}
+			(-\identity)^i
+	\end{equation}
+\end{proposition}
+
+\begin{proposition}{Somme telescopiche}
+	\begin{equation}
+		\sum
+			\limits_{n=n_0}^{N-1}
+			\difference y_n
+		=
+		y_n  \bigg\rvert_{n_0}^{N}
+	\end{equation}
+\end{proposition}
+
+\begin{proposition}
+	Abbiamo una formula parente dell'integrazione per parti
+	
+	\begin{equation}
+	\int_{x}^{y}
+		(fg)'
+		dx
+	=
+	f g
+	\bigg\rvert_{x}^{u}
+	=
+	\int_{x}^{y}
+		f'g
+		dx
+	+
+	\int_{x}^{y}
+		fg'
+		dx
+	\end{equation}
+	
+	Infatti vale
+	
+	\begin{equation}
+		\sum
+			\limits_{n=n_0}^{N-1}
+			\difference (y_n z_n)
+		=
+		y_n z_n  \bigg\rvert_{n_0}^{N}
+		=
+		\sum
+			\limits_{n=n_0}^{N-1}
+			z_n \difference y_n
+		\sum
+			\limits_{n=n_0}^{N-1}
+			y_{n+1} \difference z_n
+	\end{equation}
+\end{proposition}
+
+\section{Problemi alle differenze}
+
+Supponiamo di voler trovare $y_n$ funzione discreta incognita e sappiamo che data $g_n$ funzione discreta nota
+
+\begin{equation}
+	\difference y_n = g_n
+\end{equation}
+
+Dai risultati precedenti
+
+\begin{equation}
+	\sum
+		\limits_{n=n_0}^{N-1}
+		\difference y_n
+	=
+	\sum
+		\limits_{n=n_0}^{N-1}
+		g_n
+	=
+	y_n \bigg\rvert_{n_0}^{N}
+\end{equation}
+
+E quindi otteniamo che 
+
+\begin{equation}
+	y_N
+	=
+	y_{n_0}
+	+
+	\sum
+		\limits_{n=n_0}^{N-1}
+		g_n
+\end{equation}
+
+Anche senza la condizione iniziale $y_0$ possiamo comunque trovare delle soluzioni non universalmente determinate; se esiste l'operatore inverso della differenza $\difference^{-1}$ possiamo applicarlo all'equazione precedente.
+
+\begin{equation}
+	y_n
+	=
+	\difference^{-1}
+	g_n
+\end{equation}
+
+Ma se $w_n$ è una funzione discreta costante (o a periodo 1) se la sommiamo a $y_n$ descritta in modo implicito
+
+\begin{equation}
+	y_n
+	=
+	\difference^{-1}
+	(g_n)
+	+
+	w_n
+\end{equation}
+
+troviamo che $y_n$ soddisfa ancora l'equazione precedente
+
+\begin{equation}
+	\difference
+	y_n
+	=
+	\difference(
+		\difference^{-1}
+		(g_n)
+		+
+		w_n)
+	=
+	g_n
+	+
+	\difference
+		w_n
+	=
+	g_n
+\end{equation}
+
+\section{Equazioni alle differenze}
+
+\begin{definition}
+	L'equazione
+	
+	\begin{equation}
+		y_{n+1} = y_n + g_n
+	\end{equation}
+	
+	è una equazione alle differenze (lineare)
+\end{definition}
+
+Se conoscessimo l'operatore antidifferenza $\difference^{-1}$ potremmo calcolare la soluzione alle equazioni alle differenze lineari senza fare sommatorie
+
+\begin{equation}
+	\sum
+		\limits_{n=n_0}^{N-1}
+		g_n
+	=
+	\sum
+		\limits_{n=n_0}^{N-1}
+		\difference y_n
+	=
+	y_n \bigg \rvert_{n_0}^{N}
+	=
+	\difference^{-1} (g_n) \bigg \rvert_{n_0}^{N}	
+\end{equation}
+
+Di qualche funzione conosciamo la antidifferenza
+
+\begin{example}
+	\begin{align*}
+		f(x) = x^n
+		\\
+		D f = n x^{n-1}
+		\\
+		D^{-1} f = \frac{x^{n+1}}{n+1} + c
+		\\
+		f^{-1} = \frac{1}{x^n} 
+	\end{align*}
+\end{example}
+
+La controparte discreta è la pseudo-potenza o potenza discreta
+
+\begin{definition}[Pseudopotenza]
+	
+	$\pseudopotenza{x}{n} = x(x-1) \dots (x-n+1)$
+\end{definition}
+
+Questa funzione si comporta come la potenza sotto l'operatore di differenza
+
+\begin{align*}
+	\difference \pseudopotenza{x}{n}
+	=
+	\pseudopotenza{x+1}{n} - \pseudopotenza{x}{n}
+	\\
+	=
+		(x+1) &x (x-1) \dots (x-n+2) -
+		\\
+		&x (x-1) \dots (x-n+2)(x-n+1)
+	\\
+	=
+		(\pseudopotenza{x}{n-1})(x+1 - (x-n+1))
+	\\
+	=
+		\pseudopotenza{x}{n-1}(n)
+\end{align*}
+
+E sotto l'operatore antidifferenza
+
+\begin{equation}
+	\difference^{-1} \pseudopotenza{x}{n}
+	=
+	\frac{
+		\pseudopotenza{x}{n+1}
+	}{
+		n+1
+	}
+	+
+	w_n
+\end{equation}
+
+Inoltre ammette inversa
+
+\begin{equation}
+	\pseudopotenza{x}{-n}
+	=
+	\frac{
+        1
+	}{
+		(x+n) (x+n-1) \dots (x+1)
+	}
+\end{equation}
+
+C'è una relazione che lega le potenze alle pseudo-potenze
+
+\begin{theorem}
+	Per ogni $n \geq 1$ esitono numeri $S_{i}^{n}$ numeri di Stirling di seconda specie per cui vale
+	
+	\begin{equation}
+		x^n
+		=
+		\sum
+			\limits_{i=1}^{n}
+				S_{i}^{n}
+				\pseudopotenza{x}{i}
+	\end{equation}
+\end{theorem}
+
+Quindi volendo calcolare le sommatorie come
+
+\begin{equation}
+	\sum
+		\limits_{x=n_0}^{N-1}
+		x^k
+	=
+	\difference^{-1} x^k \bigg \rvert_{x=n_0}^{N}
+\end{equation}
+
+Invece che calcolare le antidifferenze delle potenze calcoliamo le antidifferenze delle pseudopotenze, di cui abbiamo una formula esplicita.
+
+\begin{example}
+	\begin{align*}
+		% partenza
+		\sum
+			\limits_{x=n_0}^{N-1}
+			x^k
+		&=
+		% al posto delle antidifferenze di x^k
+		% ci mettiamo le antidifferenze delle 
+		% scritture di x^k tramite pseudopotenze
+		\difference^{-1}(
+			\sum\limits_{i=1}^{k}
+				S_{i}^{k}
+				\pseudopotenza{x}{i}
+		)
+		\bigg\rvert_{x=n_0}^{N}
+		% portiamo l'operatore antidifferenza dentro
+		\\
+		&=
+		\sum\limits_{i=1}^{k}
+			S_{i}^{k}
+			\difference^{-1}(
+				\pseudopotenza{x}{i}
+			)
+		\bigg\rvert_{x=n_0}^{N}
+		=
+		% valutiamolo sulle pseudopotenze
+		\sum\limits_{i=1}^{k}
+			S_{i}^{k}
+			\frac{
+				\pseudopotenza{x}{i+1}
+			}{
+				i+1
+			}
+		\bigg\rvert_{x=n_0}^{N}
+		\\
+		% valutiamolo numericamente
+		&=
+		\sum\limits_{i=1}^{k}
+			S_{i}^{k}
+			\frac{
+				\pseudopotenza{N}{i+1} - \pseudopotenza{n_0}{i+1}
+			}{
+				i+1
+			}
+	\end{align*}
+\end{example}
+
+\begin{theorem}
+	Per ogni $n \geq 1$ la scrittura con i numeri di Stirling di seconda specie è caratterizzata da 
+	
+	$$ S_{1}^{n} = S_{n}^{n} = 1$$
+	
+	$$ S_{i}^{n+1} = S_{i}^{n} + i S_{i}^{n}$$
+	
+	Quindi è possibile costruire una tabella triangolare inferiore di termini positivi
+		
+\end{theorem}
+
