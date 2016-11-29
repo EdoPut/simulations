@@ -4,7 +4,7 @@
 % octave has a hard limit on recursion; 256 calls are the most
 % you can make without raising an error
 % set max_recursion_depth to your value
-function x = stirling (n)
+function x = stirling_recursive (n)
   if (n == 2)
     x =[1,1];
     return;
