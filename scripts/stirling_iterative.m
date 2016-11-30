@@ -18,7 +18,7 @@ function stir = stirling_iterative (n)
 
   for i = 2 : n-1
     % S_{i-1} + i S_{i}
-    x = shift(x,1) + x .* a;
+    x = [0, x(1:end-1)] + x .* a;
   endfor
 
   stir = x(2:end);
