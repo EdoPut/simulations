@@ -18,6 +18,6 @@ function casorati_m = casorati_matrix(p, m = 0)
     % substitute the values of
     % the power solutions at timestep i
     % in the casorati matrix line i
-    casorati_m(i,:) = power_solutions(i);
+    casorati_m(i,:) = power_solutions(i-1);
   endparfor
 endfunction
